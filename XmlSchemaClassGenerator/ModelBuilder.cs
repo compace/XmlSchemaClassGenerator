@@ -250,7 +250,7 @@ namespace XmlSchemaClassGenerator
             {
                 var typeSource = CodeUtilities.CreateUri(rootElement.ElementSchemaType.SourceUri);
                 var qualifiedName = rootElement.ElementSchemaType.QualifiedName;
-                if (qualifiedName.IsEmpty) { qualifiedName = rootElement.QualifiedName; }
+                if (qualifiedName.IsEmpty || rootElement.ElementSchemaType is XmlSchemaSimpleType) { qualifiedName = rootElement.QualifiedName; }
                 var type = CreateTypeModel(typeSource, rootElement.ElementSchemaType, qualifiedName);
                 ClassModel derivedClassModel = null;
 
@@ -336,11 +336,7 @@ namespace XmlSchemaClassGenerator
                 }
                 else
                 {
-                    if (type is ClassModel classModel)
-                    {
-                        classModel.Documentation.AddRange(GetDocumentation(rootElement));
-                    }
-
+                    type.Documentation.AddRange(GetDocumentation(rootElement));
                     type.RootElement = rootElement;
                     type.RootElementName = rootElement.QualifiedName;
                 }
@@ -845,7 +841,7 @@ namespace XmlSchemaClassGenerator
                 // ElementSchemaType must be non-null. This is not the case when maxOccurs="0".
                 if (item.XmlParticle is XmlSchemaElement element && element.ElementSchemaType != null)
                 {
-                    var elementQualifiedName = element.ElementSchemaType.QualifiedName;
+                    var elementQualifiedName = element.RefName.IsEmpty ? element.ElementSchemaType.QualifiedName : element.QualifiedName;
 
                     if (elementQualifiedName.IsEmpty)
                     {
@@ -948,6 +944,8 @@ namespace XmlSchemaClassGenerator
                 {
                     var itemDocs = GetDocumentation(item.XmlParticle);
                     property.Documentation.AddRange(itemDocs);
+                    if (property.Type.Documentation.Count == 0 && property.Documentation.Count > 0)
+                        property.Type.Documentation.AddRange(property.Documentation);
 
                     if (_configuration.EmitOrder)
                     {

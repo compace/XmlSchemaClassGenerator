@@ -71,8 +71,7 @@ namespace XmlSchemaClassGenerator
                 .OrderBy(d => d.Language))
             {
                 var text = doc.Text;
-                var comment = string.Format(@"<para{0}>{1}</para>",
-                    string.IsNullOrEmpty(doc.Language) ? "" : string.Format(@" xml:lang=""{0}""", doc.Language), CodeUtilities.NormalizeNewlines(text).Trim());
+                var comment = CodeUtilities.NormalizeNewlines(text).Trim();
                 yield return new CodeCommentStatement(comment, true);
             }
 
