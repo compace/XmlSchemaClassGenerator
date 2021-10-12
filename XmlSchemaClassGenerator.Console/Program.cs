@@ -225,7 +225,7 @@ without backing field initialization for collections
 
         static void ShowHelp(OptionSet p)
         {
-            System.Console.WriteLine("Usage: xscgen [OPTIONS]+ xsdFile...");
+            System.Console.WriteLine("Usage: xsd2cs [OPTIONS]+ xsdFile...");
             System.Console.WriteLine("Generate C# classes from XML Schema files.");
             System.Console.WriteLine("Version " + typeof(Generator).Assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version);
             System.Console.WriteLine(@"xsdFiles may contain globs, e.g. ""content\{schema,xsd}\**\*.xsd"", and URLs.");

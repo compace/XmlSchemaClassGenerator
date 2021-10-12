@@ -4,28 +4,28 @@
     <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp2.1</TargetFrameworks>
     <Description>A .NET Core CLI tool to generate XmlSerializer compatible C# classes from XML Schema files.</Description>
     <Copyright>Copyright 2013-$([System.DateTime]::Now.Year) Michael Ganss</Copyright>
-    <AssemblyTitle>xscgen</AssemblyTitle>
+    <AssemblyTitle>xsd2cs</AssemblyTitle>
     <AppVeyor_Build_Version Condition="'$(APPVEYOR_BUILD_VERSION)' == ''">1.0.0</AppVeyor_Build_Version>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>$(AppVeyor_Build_Version).0</FileVersion>
     <PackageVersion>$(AppVeyor_Build_Version)</PackageVersion>
-    <AssemblyName>xscgen</AssemblyName>
+    <AssemblyName>xsd2cs</AssemblyName>
     <RootNamespace>XmlSchemaClassGenerator.Console</RootNamespace>
     <Authors>Michael Ganss</Authors>
-    <PackageId>dotnet-xscgen</PackageId>
+    <PackageId>Xsd2Cs</PackageId>
     <PackageTags>xsd xmlschema generator</PackageTags>
     <PackageProjectUrl>https://github.com/mganss/XmlSchemaClassGenerator</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/mganss/XmlSchemaClassGenerator/blob/master/LICENSE</PackageLicenseUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>git://github.com/mganss/XmlSchemaClassGenerator</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+    <RepositoryUrl>git://github.com/compace/XmlSchemaClassGenerator</RepositoryUrl>
     <PackAsTool>true</PackAsTool>
-    <ToolCommandName>xscgen</ToolCommandName>
+    <ToolCommandName>xsd2cs</ToolCommandName>
     <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
+    <PackageLicenseFile>License</PackageLicenseFile>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\XmlSchemaClassGenerator\XmlSchemaClassGenerator.csproj" />
@@ -34,11 +34,16 @@
     <Compile Include="..\XmlSchemaClassGenerator.Console\**\*.cs" Exclude="..\XmlSchemaClassGenerator.Console\obj\**\*;..\XmlSchemaClassGenerator.Console\bin\**\*" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\License" Pack="true" Visible="false" PackagePath=""/>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Glob.cs" Version="5.1.766" />
     <PackageReference Include="Mono.Options" Version="6.12.0.148" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
   <PropertyGroup>
     <SonarQubeExclude>true</SonarQubeExclude>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <DebugType>none</DebugType>
   </PropertyGroup>
 </Project>

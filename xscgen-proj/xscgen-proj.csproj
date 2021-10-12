@@ -39,5 +39,6 @@
   </ItemGroup>
   <PropertyGroup>
     <SonarQubeExclude>true</SonarQubeExclude>
+    <DebugType>none</DebugType>
   </PropertyGroup>
 </Project>

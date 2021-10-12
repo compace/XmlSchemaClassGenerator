@@ -871,7 +871,7 @@ namespace XmlSchemaClassGenerator
                         propertyName += "Property"; // member names cannot be the same as their enclosing type
                     }
 
-                    propertyName = typeModel.GetUniquePropertyName(propertyName);
+                    propertyName = typeModel.GetUniquePropertyName(propertyName).Replace("_", string.Empty);
 
                     property = new PropertyModel(_configuration)
                     {

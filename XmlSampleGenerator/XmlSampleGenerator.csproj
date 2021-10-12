@@ -16,5 +16,6 @@
   <PropertyGroup>
     <SonarQubeExclude>true</SonarQubeExclude>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <DebugType>none</DebugType>
   </PropertyGroup>
 </Project>
