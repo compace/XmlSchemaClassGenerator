@@ -944,7 +944,9 @@ namespace XmlSchemaClassGenerator
                 {
                     var itemDocs = GetDocumentation(item.XmlParticle);
                     property.Documentation.AddRange(itemDocs);
-                    if (property.Type.Documentation.Count == 0 && property.Documentation.Count > 0)
+                    if (property.Type.Documentation.Count == 0
+                        && property.Documentation.Count > 0
+                        && !(property.Type.XmlSchemaType is XmlSchemaSimpleType))
                         property.Type.Documentation.AddRange(property.Documentation);
 
                     if (_configuration.EmitOrder)
