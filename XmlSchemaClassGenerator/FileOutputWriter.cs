@@ -68,7 +68,8 @@ namespace XmlSchemaClassGenerator
 
         private void WriteSeparateFiles(CodeNamespace cn)
         {
-            var dirPath = Path.Combine(OutputDirectory, ValidateName(cn.Name));
+            //var dirPath = Path.Combine(OutputDirectory, ValidateName(cn.Name));
+            var dirPath = OutputDirectory;
             var ccu = new CodeCompileUnit();
             var cns = new CodeNamespace(ValidateName(cn.Name));
 

@@ -112,7 +112,8 @@ namespace XmlSchemaClassGenerator
 
         private static string MakeValidIdentifier(this string s)
         {
-            var id = InvalidCharsRegex.Replace(s, m => InvalidChars[m.Value[0]]);
+            //var id = InvalidCharsRegex.Replace(s, m => InvalidChars[m.Value[0]]);
+            var id = InvalidCharsRegex.Replace(s, string.Empty);
             return Provider.CreateValidIdentifier(Regex.Replace(id, @"\W+", "_"));
         }
     }
